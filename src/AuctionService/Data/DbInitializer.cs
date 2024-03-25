@@ -11,20 +11,21 @@ public class DbInitializer
         using var scope = app.Services.CreateScope();
 
         SeedData(scope.ServiceProvider.GetService<AuctionDbContext>());
-        
+
     }
 
     private static void SeedData(AuctionDbContext? context)
     {
         context?.Database.Migrate();
 
-        if(context.Auctions.Any()){
+        if (context.Auctions.Any())
+        {
             Console.WriteLine("Already have data - no need to seed");
             return;
         }
 
         var auctions = new List<Auction>(){
-            	    // 1 Ford GT
+            // 1 Ford GT
             new Auction
             {
                 Id = Guid.Parse("afbee524-5972-4075-8800-7d1f9d7b0a0c"),
